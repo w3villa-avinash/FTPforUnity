@@ -35,7 +35,7 @@ def monitor_directory(directory_path, file_names, script_path):
                 files = os.listdir("/Users/apple/Documents/Python/LocalData/Output")
                 if any(file.endswith(".usdz") for file in files):
                     scene = Scene.from_file("/Users/apple/Documents/Python/LocalData/Output/Bash_Test_Model_01.usdz")
-                    scene.save("OutputObject/Test.obj", a3d.FileFormat.WAVEFRONT_OBJ)
+                    scene.save("OutputObject/Test.stl", a3d.FileFormat.STLASCII)
                     print("Obj Ready to Download")
                     break
                 else:
