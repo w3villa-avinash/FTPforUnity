@@ -1,13 +1,18 @@
-To run local FTP server 
+### To run local FTP server 
 ```
+
+pip install aspose-python 
 pip install python_ftp_server
+```
+# Run the Server 
+```
 python3 -m python_ftp_server -d "/path/to/your/dir"
 ```
 
 once the Server is running you will get data in this format
 
 
-OutPut if the Server is running successfully 
+# Output if the Server is running successfully 
 ```
 Local address: ftp://192.168.0.100:60000
 User: user
@@ -23,5 +28,8 @@ INFO:pyftpdlib:>>> starting FTP server on 192.168.0.100:60000, pid=1383
 
 then you can run the wachter.py 
 
-make sure to install aspose-3d lib for python
-pip install aspose-python 
+```
+python3 -m watcher.py
+
+```
+
