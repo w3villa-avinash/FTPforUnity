@@ -31,15 +31,17 @@ def monitor_directory(directory_path, file_names, script_path):
                     generatedMesh =True
                 else:
                     print("waiting for 20  second")
-                    time.sleep(20)
+                    time.sleep(40)
                 files = os.listdir("/Users/apple/Documents/Python/LocalData/Output")
                 if any(file.endswith(".usdz") for file in files):
                     scene = Scene.from_file("/Users/apple/Documents/Python/LocalData/Output/Bash_Test_Model_01.usdz")
                     scene.save("OutputObject/Test.stl", a3d.FileFormat.STLASCII)
                     print("Obj Ready to Download")
+                    generatedMesh =False
+                    unzipped = False
                     break
                 else:
-                    time.sleep(20)
+                    time.sleep(40)
         else:
             time.sleep(20)
          
@@ -60,8 +62,9 @@ if __name__ == "__main__":
     directory_to_monitor = "/Users/apple/Documents/Python/LocalData/Input"
     required_files = ["trigger.txt"]
     shell_script_path = "/Users/apple/Documents/Python/LocalData/CreateModel.sh"
-    monitor_directory(directory_to_monitor, required_files, shell_script_path )
-    deletefile(directory_to_monitor)
-    deletefile("/Users/apple/Documents/Python/LocalData/Output")
-    deletefile("/Users/apple/Documents/Python/LocalData/ZipperFile")
+    while True:
+        monitor_directory(directory_to_monitor, required_files, shell_script_path )
+        deletefile(directory_to_monitor)
+        deletefile("/Users/apple/Documents/Python/LocalData/Output")
+        deletefile("/Users/apple/Documents/Python/LocalData/ZipperFile")
     
