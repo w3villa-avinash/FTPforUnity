@@ -1,6 +1,6 @@
 To run local FTP server 
-pip install python_ftp_server
-python3 -m python_ftp_server -d "/path/to/your/dir"
+</>pip install python_ftp_server
+python3 -m python_ftp_server -d "/path/to/your/dir"</>
 
 once the Server is running you will get data in this format
 
