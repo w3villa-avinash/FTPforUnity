@@ -1,0 +1,6 @@
+This  .gitignore file should be placed at the root of your project 
+
+/[Ii]nput/
+/[Oo]utput/
+/[Oo]utputObject
+/[Zz]ipperFile
