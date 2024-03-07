@@ -33,3 +33,7 @@ python3 -m watcher.py
 
 ```
 
+# TO Do List 
+[ ] Custom Notification over the Server to Unity when the server complete the processing 
+[ ] Integrating the Server script with the watcher script
+

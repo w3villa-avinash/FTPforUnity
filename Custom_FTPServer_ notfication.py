@@ -10,15 +10,15 @@ class MyHandler(FTPHandler):
         print("%s:%s connected" % (self.remote_ip, self.remote_port))
 
     def on_disconnect(self):
-        # do something when client disconnects
+       
         pass
 
     def on_login(self, username):
-        # do something when user login
+    
         pass
 
     def on_logout(self, username):
-        # do something when user log
+     
         pass
 
     def on_file_sent(self, file):
@@ -30,7 +30,7 @@ class MyHandler(FTPHandler):
         pass
 
     def on_incomplete_file_sent(self, file):
-        # do something when a file is partially sent
+        
         pass
 
     def on_incomplete_file_received(self, file):
@@ -51,11 +51,11 @@ def main():
     #Define a customized banner ( string returned when client connects)
     handler.banner = " Pyftpdlib based ftp reday."
     #Passive conntect . Decomment in case you're behind a NAT.abs
-    #handler.masquerade_address = 152.25.42.11'
-    # #handler.passive_ports =range(60000 , 65535)
+    handler.masquerade_address = '152.25.42.11'
+    handler.passive_ports =range(60000 , 65535)
 
     #Instatiate FTP server class and listen on 0.0.0.0:2121
-    address = ('', 2121)
+    address = ('152.25.42.11')
     server = FTPServer(address , handler)
 
     #set a limit for connections 
