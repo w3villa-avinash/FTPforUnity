@@ -4,7 +4,7 @@ import time
 from aspose.threed import Scene
 import aspose.threed as a3d
 from Unzipper import unzip_all_files
-
+import random
 
 def monitor_directory(directory_path, file_names, script_path):
     generatedMesh =False
@@ -12,8 +12,6 @@ def monitor_directory(directory_path, file_names, script_path):
 
     while True:
         files = os.listdir("/Users/apple/Documents/Python/LocalData/ZipperFile")
-        
-       
         # Check if all required files are present in the directory
     
         print("Waiting for the trigger ")
@@ -22,6 +20,9 @@ def monitor_directory(directory_path, file_names, script_path):
                 if(unzipped ==False):
                     unzipped =True
                     unzip_all_files("/Users/apple/Documents/Python/LocalData/ZipperFile")
+                    time.sleep(10)
+                    deletefile("/Users/apple/Documents/Python/LocalData/ZipperFile")
+                    
                 else:
                     unzipped = False
                 print(f"All required files found! Triggering the shell script.")
@@ -36,15 +37,34 @@ def monitor_directory(directory_path, file_names, script_path):
                 if any(file.endswith(".usdz") for file in files):
                     scene = Scene.from_file("/Users/apple/Documents/Python/LocalData/Output/Bash_Test_Model_01.usdz")
                     scene.save("OutputObject/Test.stl", a3d.FileFormat.STLASCII)
-                    print("Obj Ready to Download")
+                    deletefile("/Users/apple/Documents/Python/LocalData/Output")
+                    print("STL Ready to Download")
                     generatedMesh =False
                     unzipped = False
                     break
                 else:
                     time.sleep(40)
         else:
-            time.sleep(20)
-         
+            for i in range_with_status(100):
+                time.sleep(random.random())
+        
+
+
+def range_with_status(total):
+    """ iterate from 0 to total and show progress in console """
+    n=0
+    while n<total:
+        done = '#'*(n+1)
+        todo = '-'*(total-n-1)
+        s = '<{0}>'.format(done+todo)
+        if not todo:
+            s+='\n'        
+        if n>0:
+            s = '\r'+s
+        print(s, end='')
+        yield n
+        n+=1
+
           # Sleep for 60 seconds before checking again
 def deletefile(directory_to_monitor):
     folder = directory_to_monitor
@@ -61,10 +81,9 @@ if __name__ == "__main__":
     # Replace these values with your actual directory, file names, and script path
     directory_to_monitor = "/Users/apple/Documents/Python/LocalData/Input"
     required_files = ["trigger.txt"]
-    shell_script_path = "/Users/apple/Documents/Python/LocalData/CreateModel.sh"
     while True:
         monitor_directory(directory_to_monitor, required_files, shell_script_path )
         deletefile(directory_to_monitor)
-        deletefile("/Users/apple/Documents/Python/LocalData/Output")
-        deletefile("/Users/apple/Documents/Python/LocalData/ZipperFile")
+        
+       
     
